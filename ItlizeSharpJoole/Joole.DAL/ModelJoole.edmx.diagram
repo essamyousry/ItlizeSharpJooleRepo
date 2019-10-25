@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="30e3927e93fa4e64a507b36689d2dfe4" Name="Diagram1">
+        <EntityTypeShape EntityType="JooleDatabaseModel2.Category" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.Product" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.Property" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.SubCategory" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.TechSpec" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.TechSpecFilter" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleDatabaseModel2.TypeFilter" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_SubCategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_TypeFilter" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_TypeSpec" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_TypeSpecI" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_SCTypeFilter" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_SCTypeSpec" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleDatabaseModel2.FK_SCTypeSpecI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

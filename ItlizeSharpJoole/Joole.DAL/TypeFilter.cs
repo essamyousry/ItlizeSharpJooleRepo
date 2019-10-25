@@ -23,3 +23,5 @@ namespace Joole.DAL
         public virtual SubCategory SubCategory { get; set; }
     }
 }
+
+//Legend test

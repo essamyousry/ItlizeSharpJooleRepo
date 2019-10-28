@@ -68,6 +68,6 @@
     <Build Include="TechSpec.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="JooleScript1.sql" />
+    <None Include="Script1.sql" />
   </ItemGroup>
 </Project>

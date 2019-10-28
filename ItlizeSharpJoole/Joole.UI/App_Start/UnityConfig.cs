@@ -50,6 +50,12 @@ namespace Joole.UI
             var container = new UnityContainer();
 
             container.RegisterType<ICategoryRepo, CategoryRepo>();
+            container.RegisterType<ISubCategoryRepo, SubCategoryRepo>();
+            container.RegisterType<IProductRepo, ProductRepo>();
+            container.RegisterType<ITechSpecFilterRepo, ITechSpecFilterRepo>();
+            container.RegisterType<IPropertyRepo, IPropertyRepo>();
+            container.RegisterType<ITechSpecRepo, ITechSpecRepo>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

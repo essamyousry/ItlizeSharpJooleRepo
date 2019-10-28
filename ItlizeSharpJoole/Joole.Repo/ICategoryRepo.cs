@@ -9,7 +9,7 @@ namespace Joole.Repo
 {
     public interface ICategoryRepo
     {
-        IEnumerable<Category> GetCategoryNames();
+        IEnumerable<Category> GetCategories();
         Category GetCategory(int id);
     }
 }

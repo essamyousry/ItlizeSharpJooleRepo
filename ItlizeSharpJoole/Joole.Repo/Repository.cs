@@ -11,14 +11,15 @@ namespace Joole.Repo
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        readonly Context context = new Context();
-        readonly JooleDatabaseEntities2 JooleDB;
+        //readonly Context context = new Context();
+        readonly JooleDatabaseEntities2 _DbContext;
         private readonly DbSet<T> entities;
 
-        public Repository()
+        public Repository(JooleDatabaseEntities2 context)
         {
-            JooleDB = context.Init();
-            entities = JooleDB.Set<T>();
+            //JooleDB = context.Init();
+            this._DbContext = context;
+            entities = _DbContext.Set<T>();
         }
         
         public T Get(Expression<Func<T, bool>> where) {

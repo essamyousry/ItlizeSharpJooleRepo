@@ -10,11 +10,8 @@ namespace Joole.Repo
 {
     public class CategoryRepo : Repository<Category> , ICategoryRepo
     {
-        public CategoryRepo()
-        {
-
-        }
-        public IEnumerable<Category> GetCategoryNames()
+        public CategoryRepo(JooleDatabaseEntities2 context) : base(context) { }
+        public IEnumerable<Category> GetCategories()
         {
             return this.GetAll();
         }

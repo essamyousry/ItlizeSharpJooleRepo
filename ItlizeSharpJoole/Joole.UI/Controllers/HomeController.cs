@@ -26,6 +26,8 @@ namespace Joole.UI.Controllers
             //filterService.SaveAll();
             ViewBag.categories = categories;
 
+            
+
             return View();
         }
 

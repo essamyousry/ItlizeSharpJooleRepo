@@ -1,0 +1,60 @@
+﻿@model Joole.UI.Models.ResultsVM
+@{
+    ViewBag.Title = "Results";
+}
+
+<div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
+    @{ Html.RenderPartial("_SearchBar"); }
+</div>
+<div class="row">
+    
+    <div style="background: #80808026; border: 1px solid #80808026; padding: 10px;" class="col-lg-3">
+        <div class="row">
+            <div class="col-lg-4"><p>Search:</p></div>
+            <div class="col-lg-4"><button onclick="Save()" class="btn-primary">Save</button></div>
+            <div class="col-lg-4"><button class="btn-primary">Clear</button></div>
+        </div>
+        <div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div style="padding-right: 0px;" class="col-lg-3"><p>Model Year</p></div>
+            <div class="col-lg-9 text-center">
+                <div class="col-lg-4"><input id="year1" style="width:60px;" type="number" /></div>
+                <div class="col-lg-1"><p>-</p></div>
+                <div class="col-lg-4"><input id="year2" style="width:60px;" type="number" /></div>
+            </div>
+        </div><br />
+        <div>
+            <button style="width: 100%;" class="btn btn-primary" type="button">
+                Technical Specifications
+                <span class="caret"></span>
+            </button>
+        </div>
+        <br />
+        <div id="techSpecs">
+            @if(@Model != null){
+                for(int i = 0; i < @Model.SpecList.Count; i++)
+                {
+                 <p>@Model.SpecList[i]</p>
+                 <pre style="display:inline-block">@Model.SpecFilterList[i].MinValue</pre><input style="display:inline-block; width: 75%" type="range" min="@Model.SpecFilterList[i].MinValue" max="@Model.SpecFilterList[i].MaxValue" /><pre style="display:inline-block">@Model.SpecFilterList[i].MaxValue</pre>
+                }
+            }
+        </div>
+    </div>
+    
+
+    <div class="col-lg-9">
+        @if (@Model != null)
+        {
+            <h4 style="display:inline-block"><strong>@Model.Category</strong></h4><h5 style="display:inline-block; padding: 0">&ensp;>&ensp;</h5><h4 style="display:inline-block; padding: 0">@Model.SubCategory</h4>
+        }
+        </div>
+</div>
+
+<script>
+    function Save() {
+       
+    }
+</script>

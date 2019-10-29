@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Joole.Repo
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly JooleDatabaseEntities2 context;
         public CategoryRepo categoryRepo;
@@ -16,8 +16,9 @@ namespace Joole.Repo
         public ProductRepo productRepo;
         public TechSpecRepo techSpecRepo;
         public TechSpecFilterRepo techSpecFilterRepo;
+        public CustomerRepo customerRepo;
         
-        public UnitOfWork(JooleDatabaseEntities2 context, CategoryRepo categoryRepo, SubCategoryRepo subCategoryRepo, PropertyRepo propertyRepo, ProductRepo productRepo, TechSpecRepo techSpecRepo, TechSpecFilterRepo techSpecFilterRepo)
+        public UnitOfWork(JooleDatabaseEntities2 context, CategoryRepo categoryRepo, SubCategoryRepo subCategoryRepo, PropertyRepo propertyRepo, ProductRepo productRepo, TechSpecRepo techSpecRepo, TechSpecFilterRepo techSpecFilterRepo, CustomerRepo customerRepo)
         {
             this.context = context;
             this.categoryRepo = categoryRepo;
@@ -26,6 +27,7 @@ namespace Joole.Repo
             this.propertyRepo = propertyRepo;
             this.techSpecFilterRepo = techSpecFilterRepo;
             this.techSpecRepo = techSpecRepo;
+            this.customerRepo = customerRepo;
         }
         
         public void SaveAll()
@@ -33,7 +35,7 @@ namespace Joole.Repo
             context.SaveChanges();
         }
 
-        public void DisposeAll()
+        public void Dispose()
         {
             context.Dispose();
         }

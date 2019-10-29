@@ -37,5 +37,19 @@ namespace Joole.Repo
         {
             return entities.Where(where).ToList();
         }
+
+        public void Add(T entity)
+        {
+            entities.Add(entity);
+        }
+        public void Delete(T entity)
+        {
+            entities.Remove(entity);
+        }
+        public void Update(T entity)
+        {
+            entities.Attach(entity);
+            _DbContext.Entry(entity).State = EntityState.Modified;
+        }
     }
 }

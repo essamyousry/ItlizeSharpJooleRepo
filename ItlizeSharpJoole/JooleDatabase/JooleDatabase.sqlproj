@@ -66,8 +66,10 @@
     <Build Include="TypeFilter.sql" />
     <Build Include="TechSpecFilter.sql" />
     <Build Include="TechSpec.sql" />
+    <Build Include="Script1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="JooleScript1.sql" />
+    <None Include="Script2.sql" />
   </ItemGroup>
 </Project>

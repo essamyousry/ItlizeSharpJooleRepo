@@ -1,23 +1,31 @@
 ﻿@model Joole.UI.Models.SearchPageViewModel
 
+    <div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
+        @{ Html.RenderPartial("Header"); }
+    </div>
+
 <br />
-<div class="col-lg-6">
-    <div class="input-group">
-        <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                @foreach (var item in Model.Categories)
-                {
-                    <li>@Html.ActionLink(item.CategoryName, "Index", new { id = item.CategoryID })</li>
-                }
-            </ul>
-        </div><!-- /btn-group -->
-        <input id="selected" list="subcInput" type="text" class="form-control" aria-label="...">
-        <datalist id="subcInput"></datalist>
-        <button type="button" class="btn btn-default" onclick="search()">Search</button>
-    </div><!-- /input-group -->
-    <!-- /.col-lg-6 -->
+<div style="padding-left: 444px;" class="text-center">
+
+    <div style="padding-top: 200px" class="col-lg-6 text-center">
+        <div class="input-group">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    @foreach (var item in Model.Categories)
+                    {
+                        <li>@Html.ActionLink(item.CategoryName, "Index", new { id = item.CategoryID })</li>
+                    }
+                </ul>
+            </div><!-- /btn-group -->
+            <input id="selected" list="subcInput" type="text" class="form-control" aria-label="...">
+            <datalist id="subcInput"></datalist>
+            <button type="button" class="btn btn-default" onclick="search()">Search</button>
+        </div><!-- /input-group -->
+        <!-- /.col-lg-6 -->
+    </div>
 </div>
+
 <!--
 <script>
     $(document).ready(function () {

@@ -33,6 +33,11 @@ namespace Joole.Services
             return unitOfWork.subCategoryRepo.GetSubCategories();
         }
 
+        public int getSubCatgoryIDFromName(string name)
+        {
+            return unitOfWork.subCategoryRepo.Get(x => x.SubCategoryName == name).SubCategoryID;
+        }
+
         public IEnumerable<SubCategory> GetSubsforCategory(int id)
         {
             return unitOfWork.subCategoryRepo.GetMany(x => x.CategoryID == id);

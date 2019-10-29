@@ -7,12 +7,12 @@
     @{ Html.RenderPartial("_SearchBar"); }
 </div>
 <div class="row">
-    
+
     <div style="background: #80808026; border: 1px solid #80808026; padding: 10px;" class="col-lg-3">
         <div class="row">
-            <div class="col-lg-4"><p>Search:</p></div>
-            <div class="col-lg-4"><button onclick="Save()" class="btn-primary">Save</button></div>
-            <div class="col-lg-4"><button class="btn-primary">Clear</button></div>
+            <div class="col-lg-2"><p>Search:</p></div>
+            <div class="col-lg-5"><button type="button" onclick="sendValues()" class="btn-primary" style="width: 100%;">Save</button></div>
+            <div class="col-lg-5"><button class="btn-primary" style="width: 100%;">Clear</button></div>
         </div>
         <div>
 
@@ -34,27 +34,143 @@
         </div>
         <br />
         <div id="techSpecs">
-            @if(@Model != null){
-                for(int i = 0; i < @Model.SpecList.Count; i++)
+            @if (@Model != null)
+            {
+                for (int i = 0; i < @Model.SpecList.Count; i++)
                 {
-                 <p>@Model.SpecList[i]</p>
-                 <pre style="display:inline-block">@Model.SpecFilterList[i].MinValue</pre><input style="display:inline-block; width: 75%" type="range" min="@Model.SpecFilterList[i].MinValue" max="@Model.SpecFilterList[i].MaxValue" /><pre style="display:inline-block">@Model.SpecFilterList[i].MaxValue</pre>
+                    <p>@Model.SpecList[i]</p>
+                    <input id="name_@i" type="hidden" value="@Model.SpecList[i]" />
+                    <input id="min_@i" type="hidden" value="@Model.SpecFilterList[i].MinValue" />
+                    <input id="a_@i" style="display:inline-block; width: 10%" type="text" readonly>
+                    <div id="@i" style="width: 75%;display:inline-block;"></div>
+                    <input id="b_@i" style="display:inline-block; width: 10%" type="text" readonly>
+                    <input id="max_@i" type="hidden" value="@Model.SpecFilterList[i].MaxValue" />
                 }
             }
         </div>
     </div>
-    
+
 
     <div class="col-lg-9">
         @if (@Model != null)
         {
             <h4 style="display:inline-block"><strong>@Model.Category</strong></h4><h5 style="display:inline-block; padding: 0">&ensp;>&ensp;</h5><h4 style="display:inline-block; padding: 0">@Model.SubCategory</h4>
-        }
-        </div>
-</div>
 
-<script>
-    function Save() {
-       
-    }
-</script>
+            <div class="row">
+                @foreach(var item in Model.Products)
+                {
+                    if (!(Model.isFiltered))
+                    {
+                <div class="col-lg-4 text-center table-bordered">
+                    <img style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
+                    <h4>@item.ProductName</h4>
+                    <h4>@item.Series</h4>
+                    <h4>@item.SeriesInfo</h4>
+                    <h4>@item.ModelYear</h4>
+                    <button>See Details</button>
+                    <input type="checkbox" value="Compare" />
+                    <br />
+                    @for (int i = 0; i < @Model.IndividualSpecs.Count; i++)
+                    {
+                        if (item.ProductID == @Model.IndividualSpecs[i].ProductID)
+                        {
+                            <h5>@Model.IndividualSpecs[i].PropertyName</h5>
+                            <h5>@Model.IndividualSpecs[i].iValue</h5>
+                            <input id="p_@i" type="hidden" value="@Model.IndividualSpecs[i].PropertyName" />
+                        }
+                    }
+                </div>
+                    }
+                    else
+                    {
+                        
+                        if (item.ModelYear >= Model.Year1 && item.ModelYear <= Model.Year2)
+                        {
+                            <div class="col-lg-4 text-center table-bordered">
+                                <img style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
+                                <h4>@item.ProductName</h4>
+                                <h4>@item.Series</h4>
+                                <h4>@item.SeriesInfo</h4>
+                                <h4>@item.ModelYear</h4>
+                                <button>See Details</button>
+                                <input type="checkbox" value="Compare" />
+                                <br />
+
+                                @for (int i = 0; i < @Model.IndividualSpecs.Count; i++)
+                                {
+                                    string s1 = Model.IndividualSpecs[i].PropertyName + "Min";
+                                    string s2 = Model.IndividualSpecs[i].PropertyName + "Max";
+        
+                                    if (item.ProductID == @Model.IndividualSpecs[i].ProductID && Model.IndividualSpecs[i].iValue >= Convert.ToInt32(ViewData[s1]) && Model.IndividualSpecs[i].iValue <= Convert.ToInt32(ViewData[s2]))
+                                    {
+                                        <h5>@Model.IndividualSpecs[i].PropertyName</h5>
+                                        <h5>@Model.IndividualSpecs[i].iValue</h5>
+                                        <input id="p_@i" type="hidden" value="@Model.IndividualSpecs[i].PropertyName" />
+                                    }
+                                    else
+                                    {
+                                        
+                                    }
+                                }
+                            </div>
+                        }
+
+                    }
+                }
+            </div>
+        }
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Content/css")
+@if (@Model != null)
+{
+    <script>
+
+        $(document).ready(function () {
+            $(function () {
+                for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
+                    createSlider(i);
+                }
+
+            });
+        });
+
+        function createSlider(i) {
+            $("#" + i).slider({
+                range: true,
+                min: parseInt($('#min_' + i).val()),
+                max: parseInt($('#max_' + i).val()),
+                values: [25, 75],
+                slide: function (event, ui) {
+                    $("#a_" + i).val(ui.values[0]);
+                    $("#b_" + i).val(ui.values[1]);
+                }
+            });
+            $("#a_" + i).val($("#" + i).slider("values", 0));
+            $("#b_" + i).val($("#" + i).slider("values", 1));
+        }
+
+        function sendValues() {
+            var year1 = $('#year1').val();
+            var year2 = $('#year2').val();
+            var values = {};
+
+            for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
+                values[$('#name_' + i).val()] = $('#a_' + i).val().toString() + '-' + $('#b_' + i).val().toString();
+            }
+            alert(JSON.stringify(values));
+            $.ajax({
+                url: '/Results/GetProducts/',
+                data: { Year1: year1.toString(), Year2: year2.toString(), filter: JSON.stringify(values), subid: @Model.SubCategoryID.ToString() },
+                type: "POST",
+                dataType: "JSON",
+                
+                success: function (data) {
+                    window.location.href = data.url;
+                }
+            })
+
+        }
+    </script>
+}

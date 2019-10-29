@@ -11,30 +11,31 @@
 
 <script>
     function categoryChanged() {
-        $('#selectedCategory').change(function () {
-            var selectedCategory = $('#selectedCategory').val();
-            //alert(selectedCategory);
-            if (selectedCategory != "") {
-                var selectedSubCategory = $('#selectedSubCategory');
-                selectedSubCategory.empty();
-                $('#subCategoryText').val('');
-                $.getJSON('/Results/GetSubCategories', { category: selectedCategory }, function (subcategories) {
-                    $('#subs').empty();
-                    $.each(subcategories, function (index, sub) {
-                        $('#subs').append($('<option/>', {
-                            value: sub.Text,
-                            id: sub.Value
-                        }));
-                    });
-                });
-            } else {
+
+        var selectedCategory = $('#selectedCategory').val();
+        //alert(selectedCategory);
+        if (selectedCategory != "") {
+            var selectedSubCategory = $('#selectedSubCategory');
+            selectedSubCategory.empty();
+            $('#subCategoryText').val('');
+            $.getJSON('/Results/GetSubCategories', { category: selectedCategory }, function (subcategories) {
                 $('#subs').empty();
-            }
-        });
+                $.each(subcategories, function (index, sub) {
+                    $('#subs').append($('<option/>', {
+                        value: sub.Text,
+                        id: sub.Value
+                    }));
+                });
+            });
+        } else {
+            $('#subs').empty();
+        }
+
     }
         
 
     function GetInput() {
+        //generateSliders();
         var category = $('#selectedCategory').val();
         var subCategory = $('#subCategoryText').val();
         //alert($("#subs option[value='" + $('#subCategoryText').val() + "']").attr('id'));

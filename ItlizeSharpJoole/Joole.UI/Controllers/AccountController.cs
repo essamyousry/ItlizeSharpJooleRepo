@@ -65,7 +65,7 @@ namespace Joole.UI.Controllers
                 else
                 {
                     Session["EmailOrUsername"] = model.EmailOrUsername;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Search");
                 }
             }
 
@@ -75,7 +75,7 @@ namespace Joole.UI.Controllers
         public ActionResult Logout()
         {
             Session.Abandon();
-            return View("Login");
+            return RedirectToAction("Index", "Search");
         }
 
 

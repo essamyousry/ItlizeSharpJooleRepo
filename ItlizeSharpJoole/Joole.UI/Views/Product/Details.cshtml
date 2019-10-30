@@ -1,4 +1,4 @@
-﻿@model Joole.UI.Models.ProductVM
+﻿@model Joole.UI.Models.CompareVM
 @{
     ViewBag.Title = "Details";
 }
@@ -13,7 +13,7 @@
                 <label>ProductID:</label>
             </td>
             <td class="col-md-9">
-                @Model.ProductID
+                @Model.Products[0].ProductID
             </td>
         </tr>
         <tr>
@@ -21,7 +21,7 @@
                 <label>ProductName:</label>
             </td>
             <td class="col-md-9">
-                @Model.ProductName
+                @Model.Products[0].ProductName
             </td>
         </tr>
         <tr>
@@ -29,15 +29,7 @@
                 <label>Manufacturer:</label>
             </td>
             <td class="col-md-9">
-                @Model.Manufacturer
-            </td>
-        </tr>
-        <tr>
-            <td class="field-label col-xs-3 active">
-                <label>SubCategoryID:</label>
-            </td>
-            <td class="col-md-9">
-                @Model.SubCategoryID
+                @Model.Products[0].Manufacturer
             </td>
         </tr>
         <tr>
@@ -45,23 +37,7 @@
                 <label>Series:</label>
             </td>
             <td class="col-md-9">
-                @Model.Series
-            </td>
-        </tr>
-        <tr>
-            <td class="field-label col-xs-3 active">
-                <label>Model:</label>
-            </td>
-            <td class="col-md-9">
-                @Model. Model
-            </td>
-        </tr>
-        <tr>
-            <td class="field-label col-xs-3 active">
-                <label>ModelYear:</label>
-            </td>
-            <td class="col-md-9">
-                @Model.ModelYear
+                @Model.Products[0].Series
             </td>
         </tr>
         <tr>
@@ -69,8 +45,60 @@
                 <label>SeriesInfo:</label>
             </td>
             <td class="col-md-9">
-                @Model.SeriesInfo
+                @Model.Products[0].SeriesInfo
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>Model:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Products[0].Model
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>ModelYear:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Products[0].ModelYear
             </td>
         </tr>
     </table>
+    <h2 style="color:#006699;">Spec Info</h2>
+    <table class="table table-bordered">
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>@Model.Item1[0].PropertyName</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Item1[0].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>@Model.Item1[1].PropertyName</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Item1[1].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>@Model.Item1[2].PropertyName</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Item1[2].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>@Model.Item1[3].PropertyName</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Item1[3].iValue
+            </td>
+        </tr>
+    </table>
+    <a href="javascript:void(0);" onclick="history.go(-1);" align="center">Back to Details</a>
 </body>

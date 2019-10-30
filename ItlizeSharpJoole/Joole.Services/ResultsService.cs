@@ -91,6 +91,21 @@ namespace Joole.Services
             return results;
         }
 
+        public List<ProductIndividualSpec> getIndividualPropertiesByProduct(int subid, int prodid)
+        {
+            IEnumerable<Property> properties = unitOfWork.propertyRepo.GetPropertiesByIndividual();
+            IEnumerable<TechSpec> specs = unitOfWork.techSpecRepo.GetMany(x => x.SubCategoryID == subid && x.ProductID == prodid);
+            var results = (from t1 in properties
+                           join t2 in specs on t1.PropertyID equals t2.PropertyID
+                           select new ProductIndividualSpec
+                           {
+                               PropertyName = t1.PropertyName,
+                               iValue = t2.iValue,
+                               ProductID = t2.ProductID
+                           }).ToList();
+            return results;
+        }
+
         public List<Product> getAllProductsBySubCategory(int sub)
         {
             return unitOfWork.productRepo.GetMany(x => x.SubCategoryID == sub).ToList();

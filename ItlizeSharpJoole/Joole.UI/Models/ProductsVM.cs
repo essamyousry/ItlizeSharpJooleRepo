@@ -14,7 +14,7 @@ namespace Joole.UI.Models
         public String Manufacturer { get; set; }
         public int SubCategoryID { get; set; }
         public string Series { get; set; }
-        public string Model { get; set; }
+        public string Modelm { get; set; }
         public int ModelYear { get; set; }
         public string SeriesInfo { get; set; }
 
@@ -25,7 +25,7 @@ namespace Joole.UI.Models
             Manufacturer = mf;
             SubCategoryID = scid;
             Series = s;
-            Model = m;
+            Modelm = m;
             ModelYear = my;
             SeriesInfo = si;
         }

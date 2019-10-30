@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-2"><p>Search:</p></div>
             <div class="col-lg-5"><button type="button" onclick="sendValues()" class="btn-primary" style="width: 100%;">Save</button></div>
-            <div class="col-lg-5"><button class="btn-primary" style="width: 100%;">Clear</button></div>
+            <div class="col-lg-5"><button onclick="clearData()" class="btn-primary" style="width: 100%;">Clear</button></div>
         </div>
         <div>
 
@@ -87,13 +87,12 @@
 
                         if (item.ModelYear >= Model.Year1 && item.ModelYear <= Model.Year2)
                         {
-                            <div class="col-lg-4 text-center table-bordered">
+                            <div id="prod_@item.ProductID" class="col-lg-4 text-center table-bordered">
                                 <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
                                 <h4>@item.ProductName</h4>
                                 <h4>@item.Series</h4>
                                 <h4>@item.SeriesInfo</h4>
                                 <h4>@item.ModelYear</h4>
-                                <button>See Details</button>
                                 <label>Compare: </label><input type="checkbox" name="prod" id="check_@item.ProductID" />
                                 <br />
 
@@ -110,7 +109,16 @@
                                     }
                                     else
                                     {
-                                        <script>$(this).empty();</script>
+                                        if (item.ProductID == @Model.IndividualSpecs[i].ProductID && (Model.IndividualSpecs[i].iValue < Convert.ToInt32(ViewData[s1]) || Model.IndividualSpecs[i].iValue > Convert.ToInt32(ViewData[s2])))
+                                        {
+                                            //break;
+                                            <script>
+                                                if (document.getElementById("prod_" + @item.ProductID) != null) {
+                                                    document.getElementById("prod_" + @item.ProductID).outerHTML = "";
+                                                }
+                                                //break;
+                                            </script>
+                                        }
                                     }
                                 }
                             </div>
@@ -132,7 +140,6 @@
                 for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
                     createSlider(i);
                 }
-
             });
         });
 
@@ -173,13 +180,22 @@
 
         }
 
+        function clearData() {
+
+            $('#year1').val('');
+            $('#year2').val('');
+            for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
+                createSlider(i);
+            }
+        }
+
         function showDetails(id) {
             var prodid = id.substr(5);
-            alert(prodid);
+            //alert(prodid);
 
             $.ajax({
-                url: '/Product/ShowProduct/',
-                data: { prodid: id },
+                url: '/Product/getProductID/',
+                data: { prodid: prodid },
                 type: "POST",
                 dataType: "JSON",
 
@@ -201,7 +217,7 @@
 
              $.ajax({
                 url: '/Product/Compare/',
-                data: {prod1: arr[0], prod2: arr[2]},
+                data: {prod1: arr[0], prod2: arr[1]},
                 type: "POST",
                 dataType: "JSON",
 

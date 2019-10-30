@@ -1,0 +1,79 @@
+﻿@model Joole.UI.Models.ProductVM
+@{
+    ViewBag.Title = "Details";
+}
+<div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
+    @{ Html.RenderPartial("Header"); }
+</div>
+
+<body>
+    <h2 style="color:#006699;">Product Summary</h2>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <table class="table table-bordered">
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>ProductID:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.ProductID
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>ProductName:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.ProductName
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>Manufacturer:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Manufacturer
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>SubCategoryID:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.SubCategoryID
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>Series:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.Series
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>Model:</label>
+            </td>
+            <td class="col-md-9">
+                @Model. Model
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>ModelYear:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.ModelYear
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-3 active">
+                <label>SeriesInfo:</label>
+            </td>
+            <td class="col-md-9">
+                @Model.SeriesInfo
+            </td>
+        </tr>
+    </table>
+</body>

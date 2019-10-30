@@ -121,8 +121,6 @@ namespace Joole.UI.Controllers
 
             model.isFiltered = true;
 
-           
-
             return View("Results", model);
         }
 
@@ -130,11 +128,11 @@ namespace Joole.UI.Controllers
         {
             Session["sub"] = subid;
             if (year1 == "")
-                Session["year1"] = "0";
+                Session["year1"] = "1900";
             else Session["year1"] = year1;
 
             if (year2 == "")
-                Session["year2"] = "0";
+                Session["year2"] = "2020";
             else Session["year2"] = year2;
 
             var JSONObj = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(filter);

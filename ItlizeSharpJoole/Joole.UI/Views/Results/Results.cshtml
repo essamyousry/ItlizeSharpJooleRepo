@@ -3,6 +3,7 @@
     ViewBag.Title = "Results";
 }
 
+
 <div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
     @{ Html.RenderPartial("_SearchBar"); }
 </div>
@@ -12,7 +13,7 @@
         <div class="row">
             <div class="col-lg-2"><p>Search:</p></div>
             <div class="col-lg-5"><button type="button" onclick="sendValues()" class="btn-primary" style="width: 100%;">Save</button></div>
-            <div class="col-lg-5"><button class="btn-primary" style="width: 100%;">Clear</button></div>
+            <div class="col-lg-5"><button onclick="clearData()" class="btn-primary" style="width: 100%;">Clear</button></div>
         </div>
         <div>
 
@@ -49,7 +50,8 @@
             }
         </div>
     </div>
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Content/css")
 
     <div class="col-lg-9">
         @if (@Model != null)
@@ -57,49 +59,48 @@
             <h4 style="display:inline-block"><strong>@Model.Category</strong></h4><h5 style="display:inline-block; padding: 0">&ensp;>&ensp;</h5><h4 style="display:inline-block; padding: 0">@Model.SubCategory</h4><button onclick="compare()" style="display: inline-block; float: right;">Compare</button>
 
             <div class="row">
-                @foreach(var item in Model.Products)
+                @foreach (var item in Model.Products)
                 {
                     if (!(Model.isFiltered))
                     {
-                <div class="col-lg-4 text-center table-bordered">
-                    <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
-                    <h4>@item.ProductName</h4>
-                    <h4>@item.Series</h4>
-                    <h4>@item.SeriesInfo</h4>
-                    <h4>@item.ModelYear</h4>
-                    <label>Compare: </label><input type="checkbox" name="prod" id="check_@item.ProductID" />
-                    <br />
-                    @for (int i = 0; i < @Model.IndividualSpecs.Count; i++)
-                    {
-                        if (item.ProductID == @Model.IndividualSpecs[i].ProductID)
-                        {
-                            <h5>@Model.IndividualSpecs[i].PropertyName</h5>
-                            <h5>@Model.IndividualSpecs[i].iValue</h5>
-                            <input id="p_@i" type="hidden" value="@Model.IndividualSpecs[i].PropertyName" />
-                        }
-                    }
-                </div>
+                        <div class="col-lg-4 text-center table-bordered">
+                            <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
+                            <h4>@item.ProductName</h4>
+                            <h4>@item.Series</h4>
+                            <h4>@item.SeriesInfo</h4>
+                            <h4>@item.ModelYear</h4>
+                            <label>Compare: </label><input type="checkbox" name="prod" id="check_@item.ProductID" />
+                            <br />
+                            @for (int i = 0; i < @Model.IndividualSpecs.Count; i++)
+                            {
+                                if (item.ProductID == @Model.IndividualSpecs[i].ProductID)
+                                {
+                                    <h5>@Model.IndividualSpecs[i].PropertyName</h5>
+                                    <h5>@Model.IndividualSpecs[i].iValue</h5>
+                                    <input id="p_@i" type="hidden" value="@Model.IndividualSpecs[i].PropertyName" />
+                                }
+                            }
+                        </div>
                     }
                     else
                     {
-                        
+
                         if (item.ModelYear >= Model.Year1 && item.ModelYear <= Model.Year2)
                         {
-                            <div class="col-lg-4 text-center table-bordered">
+                            <div id="prod_@item.ProductID" class="col-lg-4 text-center table-bordered">
                                 <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
                                 <h4>@item.ProductName</h4>
                                 <h4>@item.Series</h4>
                                 <h4>@item.SeriesInfo</h4>
                                 <h4>@item.ModelYear</h4>
-                                <button>See Details</button>
-                                <label>Compare: </label><input type="checkbox" name="prod" id="check_@item.ProductID"/>
+                                <label>Compare: </label><input type="checkbox" name="prod" id="check_@item.ProductID" />
                                 <br />
 
                                 @for (int i = 0; i < @Model.IndividualSpecs.Count; i++)
                                 {
                                     string s1 = Model.IndividualSpecs[i].PropertyName + "Min";
                                     string s2 = Model.IndividualSpecs[i].PropertyName + "Max";
-        
+
                                     if (item.ProductID == @Model.IndividualSpecs[i].ProductID && Model.IndividualSpecs[i].iValue >= Convert.ToInt32(ViewData[s1]) && Model.IndividualSpecs[i].iValue <= Convert.ToInt32(ViewData[s2]))
                                     {
                                         <h5>@Model.IndividualSpecs[i].PropertyName</h5>
@@ -108,7 +109,16 @@
                                     }
                                     else
                                     {
-                                        
+                                        if (item.ProductID == @Model.IndividualSpecs[i].ProductID && (Model.IndividualSpecs[i].iValue < Convert.ToInt32(ViewData[s1]) || Model.IndividualSpecs[i].iValue > Convert.ToInt32(ViewData[s2])))
+                                        {
+                                            //break;
+                                            <script>
+                                                if (document.getElementById("prod_" + @item.ProductID) != null) {
+                                                    document.getElementById("prod_" + @item.ProductID).outerHTML = "";
+                                                }
+                                                //break;
+                                            </script>
+                                        }
                                     }
                                 }
                             </div>
@@ -120,8 +130,7 @@
         }
     </div>
 </div>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/Content/css")
+
 @if (@Model != null)
 {
     <script>
@@ -131,7 +140,6 @@
                 for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
                     createSlider(i);
                 }
-
             });
         });
 
@@ -164,7 +172,7 @@
                 data: { Year1: year1.toString(), Year2: year2.toString(), filter: JSON.stringify(values), subid: @Model.SubCategoryID.ToString() },
                 type: "POST",
                 dataType: "JSON",
-                
+
                 success: function (data) {
                     window.location.href = data.url;
                 }
@@ -172,16 +180,25 @@
 
         }
 
+        function clearData() {
+
+            $('#year1').val('');
+            $('#year2').val('');
+            for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
+                createSlider(i);
+            }
+        }
+
         function showDetails(id) {
             var prodid = id.substr(5);
-            alert(prodid);
+            //alert(prodid);
 
             $.ajax({
-                url: '/Product/ShowProduct/',
-                data: { prodid: id },
+                url: '/Product/getProductID/',
+                data: { prodid: prodid },
                 type: "POST",
                 dataType: "JSON",
-                
+
                 success: function (data) {
                     window.location.href = data.url;
                 }
@@ -200,10 +217,10 @@
 
              $.ajax({
                 url: '/Product/Compare/',
-                data: {prod1: arr[0], prod2: arr[2]},
+                data: {prod1: arr[0], prod2: arr[1]},
                 type: "POST",
                 dataType: "JSON",
-                
+
                 success: function (data) {
                     window.location.href = data.url;
                 }

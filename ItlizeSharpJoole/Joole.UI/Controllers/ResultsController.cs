@@ -47,10 +47,12 @@ namespace Joole.UI.Controllers
             {
                 string sub = Session["sub"] as string;
                 id = int.Parse(sub);
+                Session["sub"] = sub;
             }
             else
             {
                 id = filterService.getSubCatgoryIDFromName(subName);
+                Session["sub"] = id.ToString();
             }
             
             string category = filterService.GetCategoryNameFromSub(id);

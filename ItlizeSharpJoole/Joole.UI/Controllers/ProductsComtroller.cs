@@ -22,7 +22,8 @@ namespace Joole.UI.Controllers
         public ActionResult ShowProductSummary()
         {
             string prodSummary = Session["ProdSummary"] as string;
-            string subid = Session["subid"] as string;
+            
+            string subid = Session["sub"] as string;
             int prodid = int.Parse(prodSummary);
 
             Product p = productService.GetProduct(prodid);
@@ -43,7 +44,7 @@ namespace Joole.UI.Controllers
         {
             string id1 = Session["id1"] as string;
             string id2 = Session["id2"] as string;
-            string subid = Session["subid"] as string;
+            string subid = Session["sub"] as string;
 
             Models.CompareVM CompareVM = new Models.CompareVM();
             Product P = productService.GetProduct(int.Parse(id1));
@@ -57,10 +58,10 @@ namespace Joole.UI.Controllers
             return View("Compare", CompareVM);
         }
 
-        public ActionResult Compare(string id1, string id2)
+        public ActionResult Compare(string prod1, string prod2)
         {
-            Session["id1"] = id1;
-            Session["id2"] = id2;
+            Session["id1"] = prod1;
+            Session["id2"] = prod2;
             return Json(new { url = Url.Action("ComparisonResults", "Product") });
         }
     }

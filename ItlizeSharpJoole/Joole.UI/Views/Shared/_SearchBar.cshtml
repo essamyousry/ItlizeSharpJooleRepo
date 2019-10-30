@@ -1,8 +1,9 @@
 ﻿<div style="height: 120px; background-image: linear-gradient(#7e7ed0, white)" class="container-fluid text-center" id="searchBar">
     <p style="padding-top: 25px; font-size: 45px; display:inline-block; float: left;">jOOle</p>
+    <div style="float: right;"> @Html.Partial("_loginPartial")</div>
     <div style="padding-top: 45px;">
 
-        @Html.DropDownList("selectedCategory", new SelectList(ViewBag.categories), "Categories" , new { @id="selectedCategory", @onchange="categoryChanged()", @style="height: 26px" })
+        @Html.DropDownList("selectedCategory", new SelectList(ViewBag.categories), "Categories" , new { @id="selectedCategory", @onchange="categoryChanged()", @style="height: 26px; margin-left: 10em;" })
         <input id="subCategoryText" list="subs" style="width: 60%;" type="text" />
         <datalist id="subs"></datalist>
         <button style="background-color: #4949e6; color: white; padding: 5px;" class="glyphicon glyphicon-search"onclick="GetInput()"></button>

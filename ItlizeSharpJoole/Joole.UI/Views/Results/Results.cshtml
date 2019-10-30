@@ -3,6 +3,10 @@
     ViewBag.Title = "Results";
 }
 
+@{
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
 
 <div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
     @{ Html.RenderPartial("_SearchBar"); }
@@ -53,7 +57,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Content/css")
 
-    <div class="col-lg-9">
+    <div style="" class="col-lg-9">
         @if (@Model != null)
         {
             <h4 style="display:inline-block"><strong>@Model.Category</strong></h4><h5 style="display:inline-block; padding: 0">&ensp;>&ensp;</h5><h4 style="display:inline-block; padding: 0">@Model.SubCategory</h4><button onclick="compare()" style="display: inline-block; float: right;">Compare</button>

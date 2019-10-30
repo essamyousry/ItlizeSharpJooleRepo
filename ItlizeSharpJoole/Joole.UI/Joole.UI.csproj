@@ -225,6 +225,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\_loginPartial.cshtml" />
+    <Content Include="Views\Shared\Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

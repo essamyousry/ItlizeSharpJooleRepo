@@ -1,4 +1,5 @@
 ﻿using Joole.DAL;
+using Joole.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Joole.UI.Models
 {
     public class CompareVM
     {
-        public List<Product> Proudcts { get; set; }
+        public List<Product> Products { get; set; }
+        public List<ProductIndividualSpec> Item1 { get; set; }
+        public List<ProductIndividualSpec> Item2 { get; set; }
     }
 }

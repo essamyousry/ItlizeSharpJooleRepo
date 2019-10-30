@@ -166,7 +166,7 @@
             for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
                 values[$('#name_' + i).val()] = $('#a_' + i).val().toString() + '-' + $('#b_' + i).val().toString();
             }
-            alert(JSON.stringify(values));
+            //alert(JSON.stringify(values));
             $.ajax({
                 url: '/Results/GetProducts/',
                 data: { Year1: year1.toString(), Year2: year2.toString(), filter: JSON.stringify(values), subid: @Model.SubCategoryID.ToString() },
@@ -213,7 +213,7 @@
                 arr.push(prodid);
             });
 
-            alert(arr.toString());
+            //alert(arr.toString());
 
              $.ajax({
                 url: '/Product/Compare/',

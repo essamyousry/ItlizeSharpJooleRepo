@@ -156,6 +156,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompareVM.cs" />
     <Compile Include="Models\ProductsVM.cs" />
     <Compile Include="Models\ResultsVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,6 +204,7 @@
     <Content Include="Views\Shared\_SearchBar.cshtml" />
     <Content Include="Views\Results\SearchResults.cshtml" />
     <Content Include="Views\Results\Details.cshtml" />
+    <Content Include="Views\Results\Compare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

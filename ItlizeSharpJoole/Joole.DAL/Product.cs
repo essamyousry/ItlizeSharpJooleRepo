@@ -14,6 +14,8 @@ namespace Joole.DAL
     
     public partial class Product
     {
+        public Product product;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {

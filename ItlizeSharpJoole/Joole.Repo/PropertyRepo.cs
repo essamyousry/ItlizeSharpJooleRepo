@@ -24,5 +24,10 @@ namespace Joole.Repo
         {
             return this.GetMany(x => x.IsTechSpec == true);
         }
+
+        public IEnumerable<Property> GetPropertiesByIndividual()
+        {
+            return this.GetMany(x => x.IsIndividual == true);
+        }
     }
 }

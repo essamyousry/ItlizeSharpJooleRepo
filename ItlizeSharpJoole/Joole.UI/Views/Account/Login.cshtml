@@ -1,0 +1,80 @@
+﻿@model Joole.UI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+    <div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
+        @{ Html.RenderPartial("Header"); }
+    </div>
+
+
+<fieldset>
+    <legend>
+        User Login
+    </legend>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.EmailOrUsername)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.EmailOrUsername)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.EmailOrUsername, null, new { @class = "text text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Password)
+                </td>
+                <td>
+                    @Html.PasswordFor(model => model.Password)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                </td>
+
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Login" />
+                            </td>
+                            <td>
+                                <input type="reset" value="Reset" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.ValidationMessage("Error", null, new { @class = "text text-danger" })
+                </td>
+            </tr>
+
+
+        </table>
+    }
+</fieldset>

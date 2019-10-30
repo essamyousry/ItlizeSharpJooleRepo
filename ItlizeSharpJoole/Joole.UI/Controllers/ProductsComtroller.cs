@@ -17,18 +17,29 @@ namespace Joole.UI.Controllers
         {
             this.productService = productService;
         }
-        public ActionResult ShowProductSummary(int itemid)
+        public ActionResult ShowProductSummary()
         {
-            Product p = productService.GetProduct(itemid);
+            string prodSummary = Session["ProdSummary"] as string;
+            int prodid = int.Parse(prodSummary);
+
+            Product p = productService.GetProduct(prodid);
             Models.ProductVM SummaryData = new Models.ProductVM();
+
             SummaryData.ProductID = p.ProductID;
             SummaryData.ProductName = p.ProductName;
             SummaryData.Manufacturer = p.Manufacturer;
             SummaryData.SubCategoryID = p.SubCategoryID;
             SummaryData.Series = p.Series;
-            SummaryData.Model = p.Model;
+            SummaryData.Modelm = p.Model;
             SummaryData.ModelYear = (int)p.ModelYear;
-            return View(SummaryData);
+
+            return View("Details", SummaryData);
+        }
+
+        public ActionResult getProductID(string prodid)
+        {
+            Session["ProdSummary"] = prodid;
+            return Json(new { url = Url.Action("ShowProductSummary", "Product") });
         }
 
         public ActionResult ComparisonResults()

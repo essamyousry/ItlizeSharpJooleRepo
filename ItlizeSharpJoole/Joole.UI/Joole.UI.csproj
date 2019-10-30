@@ -158,6 +158,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompareVM.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProductsVM.cs" />
     <Compile Include="Models\ResultsVM.cs" />
@@ -224,7 +225,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Views\Shared\_loginPartial.cshtml" />
+    <Content Include="Views\Product\Compare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

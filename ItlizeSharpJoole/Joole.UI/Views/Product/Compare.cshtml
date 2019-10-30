@@ -1,0 +1,176 @@
+﻿@model Joole.UI.Models.CompareVM
+@{
+    ViewBag.Title = "Compare";
+}
+<div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
+    @{ Html.RenderPartial("Header"); }
+</div>
+
+<body>
+    <h2 style="color:#006699;" align="center">Product Comparison</h2>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ProductID:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ProductID
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ProductID
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ProductName:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ProductName
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ProductName
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ProductImage:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ProductImage
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ProductImage
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Series:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].Series
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].Series
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Model:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].Model
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].Model
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ModelYear:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ModelYear
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ModelYear
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Manufacturer:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].Manufacturer
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].Manufacturer
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Spec:</label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[0].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[0].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[0].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[0].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label></label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[1].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[1].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[1].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[1].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label></label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[2].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[2].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[2].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[2].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label></label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[3].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[3].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[3].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[3].iValue
+            </td>
+        </tr>
+    </table>
+    <a href="javascript:void(0);" onclick="history.go(-1);" align="center">Back to Details</a>
+</body>
+

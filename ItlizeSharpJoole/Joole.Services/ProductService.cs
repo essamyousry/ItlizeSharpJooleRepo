@@ -32,7 +32,5 @@ namespace Joole.Services
         {
             return unitOfWork.productRepo.GetProductByID(id);
         }
-
-
     }
 }

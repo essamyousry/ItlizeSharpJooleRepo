@@ -26,9 +26,9 @@
         <div class="row">
             <div style="padding-right: 0px;" class="col-lg-3"><p>Model Year</p></div>
             <div class="col-lg-9 text-center">
-                <div class="col-lg-4"><input id="year1" style="width:60px;" type="number" /></div>
+                <div class="col-lg-4"><input id="year1" style="width:60px;" type="text" /></div>
                 <div class="col-lg-1"><p>-</p></div>
-                <div class="col-lg-4"><input id="year2" style="width:60px;" type="number" /></div>
+                <div class="col-lg-4"><input id="year2" style="width:60px;" type="text" /></div>
             </div>
         </div><br />
         <div>
@@ -68,7 +68,7 @@
                     if (!(Model.isFiltered))
                     {
                         <div class="col-lg-4 text-center table-bordered">
-                            <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
+                            <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%; cursor: pointer;" src="~/Content/Images/@item.ProductImage" />
                             <h4>@item.ProductName</h4>
                             <h4>@item.Series</h4>
                             <h4>@item.SeriesInfo</h4>
@@ -146,13 +146,16 @@
                 }
             });
         });
+        //var sliderArray = [];
+
+        reFillInputs();
 
         function createSlider(i) {
             $("#" + i).slider({
                 range: true,
                 min: parseInt($('#min_' + i).val()),
                 max: parseInt($('#max_' + i).val()),
-                values: [25, 75],
+                values: [(1/4) * parseInt($('#max_' + i).val()), (3/4) * parseInt($('#max_' + i).val())],
                 slide: function (event, ui) {
                     $("#a_" + i).val(ui.values[0]);
                     $("#b_" + i).val(ui.values[1]);
@@ -169,8 +172,12 @@
 
             for (var i = 0; i < @Model.SpecFilterList.Count; i++) {
                 values[$('#name_' + i).val()] = $('#a_' + i).val().toString() + '-' + $('#b_' + i).val().toString();
+
+                //sliderArray.push($('#a_' + i).val());
+                //sliderArray.push($('#b_' + i).val());
             }
-            //alert(JSON.stringify(values));
+            //window.localStorage.setItem('slidervalues', JSON.stringify(sliderArray));
+
             $.ajax({
                 url: '/Results/GetProducts/',
                 data: { Year1: year1.toString(), Year2: year2.toString(), filter: JSON.stringify(values), subid: @Model.SubCategoryID.ToString() },
@@ -230,6 +237,33 @@
                 }
             })
 
+        }
+
+        function reFillInputs() {
+            if ("@Model.isFiltered") {
+                if (@Model.Year1 != "0") $('#year1').val("@Model.Year1");
+                if (@Model.Year2 != "0") $('#year2').val("@Model.Year2");
+
+                $('#selectedCategory').val("@Model.Category");
+                $('#subCategoryText').val("@Model.SubCategory");
+
+                /*
+                let sliderArrayValues = JSON.parse(window.localStorage.getItem("slidervalues"));
+                alert(sliderArrayValues);
+                var i = 0;
+                var tracker = 0;
+                while (i < Model.SpecFilterList.Count) {
+                    $('#' + i).slider('values', sliderArrayValues[tracker], sliderArrayValues[tracker++]);
+
+                    tracker++;
+                    i++;
+                }
+                */
+            }
+            else {
+                $('#selectedCategory').val("@Model.Category");
+                $('#subCategoryText').val("@Model.SubCategory");
+            }
         }
     </script>
 }

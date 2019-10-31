@@ -39,6 +39,19 @@
     <table class="table table-bordered" align="center">
         <tr>
             <td class="field-label col-xs-2 active">
+                <label>ProductImage:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ProductImage
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ProductImage
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
                 <label>Series:</label>
             </td>
             <td class="col-md-5">
@@ -46,19 +59,6 @@
             </td>
             <td class="col-md-5">
                 @Model.Products[1].Series
-            </td>
-        </tr>
-    </table>
-    <table class="table table-bordered" align="center">
-        <tr>
-            <td class="field-label col-xs-2 active">
-                <label>Series Info:</label>
-            </td>
-            <td class="col-md-5">
-                @Model.Products[0].SeriesInfo
-            </td>
-            <td class="col-md-5">
-                @Model.Products[1].SeriesInfo
             </td>
         </tr>
     </table>
@@ -101,23 +101,75 @@
             </td>
         </tr>
     </table>
-    <h2 style="color:#006699;" align="center">Technical Specifications</h2>
     <table class="table table-bordered" align="center">
-
-        @for (int i = 0; i < Model.Item1.Count; i++)
-        {
-            <tr>
-                <td class="field-label col-xs-2 active">
-                    <label>@Model.Item1[i].PropertyName:</label>
-                </td>
-                <td class="col-md-3">
-                    @Model.Item1[i].iValue
-                </td>
-                <td class="col-md-3">
-                    @Model.Item2[i].iValue
-                </td>
-            </tr>
-        }
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Spec:</label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[0].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[0].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[0].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[0].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label></label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[1].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[1].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[1].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[1].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label></label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[2].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[2].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[2].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[2].iValue
+            </td>
+        </tr>
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label></label>
+            </td>
+            <td class="col-md-2">
+                @Model.Item1[3].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item1[3].iValue
+            </td>
+            <td class="col-md-2">
+                @Model.Item2[3].PropertyName
+            </td>
+            <td class="col-md-3">
+                @Model.Item2[3].iValue
+            </td>
+        </tr>
     </table>
     <a href="javascript:void(0);" onclick="history.go(-1);" align="center">Back to Details</a>
 </body>

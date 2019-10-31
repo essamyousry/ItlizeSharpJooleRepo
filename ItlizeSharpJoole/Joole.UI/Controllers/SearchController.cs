@@ -1,4 +1,5 @@
 ﻿using Joole.DAL;
+using Joole.Services;
 using Joole.UI.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,12 @@ namespace Joole.UI.Controllers
     {
 
         JooleDatabaseEntities2 context = new JooleDatabaseEntities2();
+        FilterService filterService;
+
+        public SearchController(FilterService filterService)
+        {
+            this.filterService = filterService;
+        }
         public ActionResult Index(int? id)
         {
 
@@ -37,7 +44,8 @@ namespace Joole.UI.Controllers
 
         public ActionResult ToResult(string subName)
         {
-            Session["subName"] = subName;
+            int id = filterService.getSubCatgoryIDFromName(subName);
+            Session["sub"] = id.ToString() ;
             return Json(new { url = Url.Action("Result", "Results") });
         }
 

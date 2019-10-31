@@ -37,17 +37,13 @@ namespace Joole.Services
         public List<string> getSpecListForSubCategory(int sub)
         {
             IEnumerable<Property> propertyList = unitOfWork.propertyRepo.GetPropertiesByTechSpec();
-            List<TechSpecFilter> filterList = new List<TechSpecFilter>();
-            List<string> selectList = new List<string>();
-            int count = 0;
-            foreach (var item in propertyList)
-            {
-                filterList.Add(unitOfWork.techSpecFilterRepo.GetByPropertyAndSubCategory(item.PropertyID, sub));
-                if(item.PropertyID == filterList[count].PropertyID && filterList[count].SubCategoryID == sub)
-                    selectList.Add(item.PropertyName);
-                count++;
-            }
-            return selectList;
+            IEnumerable<TechSpecFilter> specFilterList = unitOfWork.techSpecFilterRepo.GetGeneralTechSpecPropertiesBySub(sub);
+
+            var results = (from t1 in propertyList
+                           join t2 in specFilterList on t1.PropertyID equals t2.PropertyID
+                           select t1.PropertyName).ToList();
+
+            return results;
         }
 
         public List<string> getSpecListForSubCategoryAndProduct(int sub)

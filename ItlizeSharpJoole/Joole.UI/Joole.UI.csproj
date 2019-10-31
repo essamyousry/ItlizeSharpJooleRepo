@@ -180,6 +180,9 @@
     <Content Include="Content\Images\ui-icons_777777_256x240.png" />
     <Content Include="Content\Images\ui-icons_cc0000_256x240.png" />
     <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\Images\wrench1.jpg" />
+    <Content Include="Content\Images\wrench2.jpg" />
+    <Content Include="Content\Images\wrench3.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
@@ -189,6 +192,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Compare.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -227,6 +231,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\_loginPartial.cshtml" />
     <Content Include="Views\Shared\Layout2.cshtml" />
+    <Content Include="Views\Product\Compare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

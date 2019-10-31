@@ -41,19 +41,8 @@ namespace Joole.UI.Controllers
 
         public ActionResult Result()
         {
-            string subName = Session["subName"] as string;
-            int id = -1;
-            if (subName == null)
-            {
-                string sub = Session["sub"] as string;
-                id = int.Parse(sub);
-                Session["sub"] = sub;
-            }
-            else
-            {
-                id = filterService.getSubCatgoryIDFromName(subName);
-                Session["sub"] = id.ToString();
-            }
+            string sub = Session["sub"] as string;
+            int id = int.Parse(sub);
             
             string category = filterService.GetCategoryNameFromSub(id);
             string subcategory = filterService.GetSubCateogryName(id);
@@ -129,11 +118,11 @@ namespace Joole.UI.Controllers
         public ActionResult GetProducts(string year1, string year2, string filter, string subid)
         {
             Session["sub"] = subid;
-            if (year1 == "")
+            if (year1 == "" || year1 == "0")
                 Session["year1"] = "1900";
             else Session["year1"] = year1;
 
-            if (year2 == "")
+            if (year2 == "" || year2 == "0")
                 Session["year2"] = "2020";
             else Session["year2"] = year2;
 

@@ -1,0 +1,25 @@
+﻿@if (Session["EmailOrUsername"] == null)
+{
+    <ul class=" nav navbar-nav navbar-right">
+        <li style="padding: 35px">
+            @Html.ActionLink("Register", "Register", "Account", null, new { @style = "font-size: 20px; color: black;" })
+        </li>
+
+        <li style="padding: 35px">
+            @Html.ActionLink("Login", "Login", "Account", null, new { @style = "font-size: 20px; color: black;" })
+        </li>
+
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav  navbar-right">
+        <li style="padding: 35px">
+            @Html.ActionLink("Hi! " + Session["EmailOrUsername"], "Index", "Search", null, new { @style = "font-size: 20px; color: black;" })
+        </li>
+
+        <li style="padding: 35px">
+            @Html.ActionLink("Logout", "Logout", "Account",  null, new { @style = "font-size: 20px; color: black;" })
+        </li>
+    </ul>
+}

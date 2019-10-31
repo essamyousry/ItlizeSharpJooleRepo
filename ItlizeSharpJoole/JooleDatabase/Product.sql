@@ -5,7 +5,7 @@
 	ProductImage varchar(50),
 	Series varchar(50),
 	Model varchar(50),
-	ModelYear int,
+	ModelYear int NULL,
 	Manufacturer varchar(50),
 	SeriesInfo varchar(50),
 	SubCategoryID int not null,

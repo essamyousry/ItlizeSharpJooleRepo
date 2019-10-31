@@ -69,5 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JooleScript1.sql" />
+    <None Include="Script2.sql" />
   </ItemGroup>
 </Project>

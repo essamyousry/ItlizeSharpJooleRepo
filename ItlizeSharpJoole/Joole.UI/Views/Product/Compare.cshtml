@@ -1,0 +1,124 @@
+﻿@model Joole.UI.Models.CompareVM
+@{
+    ViewBag.Title = "Compare";
+}
+<div style="background-image: linear-gradient(#7e7ed0, white)" class="row">
+    @{ Html.RenderPartial("Header"); }
+</div>
+
+<body>
+    <h2 style="color:#006699;" align="center">Product Comparison</h2>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ProductID:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ProductID
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ProductID
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ProductName:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ProductName
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ProductName
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Series:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].Series
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].Series
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Series Info:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].SeriesInfo
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].SeriesInfo
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Model:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].Model
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].Model
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>ModelYear:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].ModelYear
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].ModelYear
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered" align="center">
+        <tr>
+            <td class="field-label col-xs-2 active">
+                <label>Manufacturer:</label>
+            </td>
+            <td class="col-md-5">
+                @Model.Products[0].Manufacturer
+            </td>
+            <td class="col-md-5">
+                @Model.Products[1].Manufacturer
+            </td>
+        </tr>
+    </table>
+    <h2 style="color:#006699;" align="center">Technical Specifications</h2>
+    <table class="table table-bordered" align="center">
+
+        @for (int i = 0; i < Model.Item1.Count; i++)
+        {
+            <tr>
+                <td class="field-label col-xs-2 active">
+                    <label>@Model.Item1[i].PropertyName:</label>
+                </td>
+                <td class="col-md-3">
+                    @Model.Item1[i].iValue
+                </td>
+                <td class="col-md-3">
+                    @Model.Item2[i].iValue
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="javascript:void(0);" onclick="history.go(-1);" align="center">Back to Details</a>
+</body>
+

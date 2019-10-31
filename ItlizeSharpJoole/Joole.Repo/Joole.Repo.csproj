@@ -95,9 +95,18 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="CategoryRepo.cs" />
     <Compile Include="ICategoryRepo.cs" />
+    <Compile Include="IProductRepo.cs" />
+    <Compile Include="IPropertyRepo.cs" />
+    <Compile Include="ISubCategoryRepo.cs" />
+    <Compile Include="ITechSpecFilterRepo.cs" />
+    <Compile Include="ProductRepo.cs" />
+    <Compile Include="PropertyRepo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SubCategoryRepo.cs" />
+    <Compile Include="ITechSpecRepo.cs" />
+    <Compile Include="TechSpecFilterRepo.cs" />
+    <Compile Include="TechSpecRepo.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="Context.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

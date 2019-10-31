@@ -92,7 +92,7 @@
                         if (item.ModelYear >= Model.Year1 && item.ModelYear <= Model.Year2)
                         {
                             <div id="prod_@item.ProductID" class="col-lg-4 text-center table-bordered">
-                                <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%; height: 50%;" src="~/Content/Images/@item.ProductImage" />
+                                <img onclick="showDetails(this.id)" id="prod_@item.ProductID" style="width: 50%;  cursor: pointer; height: 50%;" src="~/Content/Images/@item.ProductImage" />
                                 <h4>@item.ProductName</h4>
                                 <h4>@item.Series</h4>
                                 <h4>@item.SeriesInfo</h4>
